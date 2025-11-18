@@ -1,0 +1,15 @@
+<phpunit
+  backupGlobals="true"
+  bootstrap="tests/bootstrap.php"
+  displayDetailsOnTestsThatTriggerDeprecations="true"
+  displayDetailsOnTestsThatTriggerErrors="true"
+  displayDetailsOnTestsThatTriggerNotices="true"
+  displayDetailsOnTestsThatTriggerWarnings="true"
+  displayDetailsOnPhpunitDeprecations="true"
+>
+  <testsuites>
+    <testsuite name="Unit Tests">
+        <directory>tests/src</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

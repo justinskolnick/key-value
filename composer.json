@@ -1,0 +1,33 @@
+{
+    "name": "justinskolnick/key-value",
+    "description": "KeyValue is a small utility that provides a simple, readable interface for managing associative arrays as a collection of key-value pairs.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "JustinSkolnick\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Justin Skolnick",
+            "email": "justinskolnick@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10",
+        "squizlabs/php_codesniffer": "^4.0",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "slevomat/coding-standard": "^8.23"
+    },
+    "scripts": {
+        "lint": "parallel-lint --exclude .git --exclude vendor --show-deprecated .",
+        "sniff": "phpcs src tests",
+        "test": "phpunit --colors=always --testdox tests"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
