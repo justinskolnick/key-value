@@ -4,6 +4,7 @@ namespace JustinSkolnick;
 
 class KeyValue {
   private ?array $values = null;
+  private ?array $initialValues = null;
 
   /**
    * Constructs the object
@@ -13,6 +14,7 @@ class KeyValue {
   public function __construct( ?array $values = null ) {
     if ( !is_null( $values ) ) {
       $this->values = $values;
+      $this->initialValues = $values;
     }
   }
 
@@ -238,14 +240,22 @@ class KeyValue {
   }
 
   /**
-   * Reset the values to null
+   * Reset the values to the initial values or null
    * Return true if the operation was successful
+   * 
+   * @param bool $nullify
    * 
    * @return bool
    */
-  final public function reset(): bool {
-    $this->values = null;
+  final public function reset( ?bool $nullify = false ): bool {
+    if ( $nullify ) {
+      $this->values = null;
 
-    return $this->isNull();
+      return $this->isNull();
+    } else {
+      $this->values = $this->initialValues;
+
+      return $this->values === $this->initialValues;
+    }
   }
 }

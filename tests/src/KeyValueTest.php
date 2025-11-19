@@ -317,31 +317,37 @@ class KeyValueTest extends TestCase
     $this->assertTrue( $collection->has( 'title' ) );
     $this->assertTrue( $collection->delete( 'title' ) );
     $this->assertFalse( $collection->has( 'title' ) );
+    $this->assertNull( $collection->get( 'title' ) );
 
     $this->assertTrue( $collection->has( 'created/timestamp' ) );
     $this->assertTrue( $collection->delete( 'created/timestamp' ) );
     $this->assertFalse( $collection->has( 'created/timestamp' ) );
+    $this->assertNull( $collection->get( 'created/timestamp' ) );
 
     $this->assertFalse( $collection->has( 'created/timezone' ) );
     $this->assertFalse( $collection->delete( 'created/timezone' ) );
     $this->assertFalse( $collection->has( 'created/timezone' ) );
+    $this->assertNull( $collection->get( 'created/timezone' ) );
   }
 
   public function testReset(): void {
     $values = [
-      'id'        => 1,
-      'title'     => 'A Short Story',
-      'is_active' => false,
-      'created'   => [
-        'readable'  => 'November 7, 2025',
-        'timestamp' => '2025-11-07 01:23:45',
-      ],
+      'ducks'   => 3,
+      'dogs'    => 4,
+      'horses'  => 2,
     ];
 
     $collection = new KeyValue( $values );
 
-    $this->assertTrue( $collection->has( 'title' ) );
-    $this->assertTrue( $collection->has( 'created/timestamp' ) );
+    $this->assertTrue( $collection->has( 'ducks' ) );
+    $this->assertTrue( $collection->has( 'dogs' ) );
+    $this->assertTrue( $collection->has( 'horses' ) );
+
+    $this->assertEquals( $collection->get( 'dogs' ), 4 );
+
+    $collection->set( 'dogs', 6 );
+
+    $this->assertEquals( $collection->get( 'dogs' ), 6 );
 
     $this->assertTrue( $collection->hasAny() );
     $this->assertFalse( $collection->isEmpty() );
@@ -350,8 +356,15 @@ class KeyValueTest extends TestCase
 
     $this->assertTrue( $collection->reset() );
 
-    $this->assertFalse( $collection->has( 'title' ) );
-    $this->assertFalse( $collection->has( 'created/timestamp' ) );
+    $this->assertEquals( $collection->get( 'dogs' ), 4 );
+
+    $this->assertTrue( $collection->reset( true ) );
+
+    $this->assertFalse( $collection->has( 'ducks' ) );
+    $this->assertFalse( $collection->has( 'dogs' ) );
+    $this->assertFalse( $collection->has( 'horses' ) );
+
+    $this->assertNull( $collection->get( 'dogs' ) );
 
     $this->assertFalse( $collection->hasAny() );
     $this->assertTrue( $collection->isEmpty() );
