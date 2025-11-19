@@ -1,6 +1,6 @@
 {
     "name": "justinskolnick/key-value",
-    "description": "KeyValue is a small utility that provides a simple, readable interface for managing associative arrays as a collection of key-value pairs.",
+    "description": "KeyValue provides a simple, readable interface for managing associative arrays as a collection of key-value pairs.",
     "type": "library",
     "license": "MIT",
     "autoload": {
