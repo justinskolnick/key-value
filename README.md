@@ -1,7 +1,7 @@
 KeyValue
 ===========
 
-KeyValue is a small utility that provides a simple, readable interface for managing associative arrays as a collection of key-value pairs.
+KeyValue provides a simple, readable interface for managing associative arrays as a collection of key-value pairs.
 
 It handles common but often complex operations like confirming membership and overwriting nested values in multi-dimensional arrays. Like so:
 
@@ -126,15 +126,41 @@ Remove an item (and confirm the deletion):
 
 ```php
 if ( $collection->delete( 'id' ) ) {
-  return true;
+  echo $collection->get( 'id' ); // null
 }
 ```
 
 Reset the collection to null (and confirm the reset):
 
 ```php
+$collection = new KeyValue(
+  [
+    'ducks'   => 3,
+    'dogs'    => 4,
+    'horses'  => 2,
+  ]
+);
+
+$collection->set( 'dogs', 6 );
+
 if ( $collection->reset() ) {
-  return true;
+  echo $collection->get( 'dogs' ); // 4
+}
+```
+
+Reset the collection to null (and confirm the reset):
+
+```php
+$collection = new KeyValue(
+  [
+    'ducks'   => 3,
+    'dogs'    => 4,
+    'horses'  => 2,
+  ]
+);
+
+if ( $collection->reset( true ) ) {
+  echo $collection->get( 'dogs' ); // null
 }
 ```
 
