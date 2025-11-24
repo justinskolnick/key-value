@@ -18,9 +18,13 @@ KeyValue is one of a number of tools I'm hoping to extract from older, larger pr
 
 ## Installation
 
-KeyValue has not yet been added to Packagist. Stay tuned.
+To install this library with Composer, type:
 
-Local installation is possible in the meantime, using the `repositories` block of your composer.json. For instance:
+```
+composer require justinskolnick/key-value
+```
+
+Local installation is possible using the `repositories` block of your composer.json. For instance:
 
 ```json
 {
